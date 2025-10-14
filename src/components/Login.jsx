@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -7,6 +7,30 @@ const Login = () => {
     name: "",
     password: "",
   });
+
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      fetch("https://dummyjson.com/auth/me", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Pass JWT via Authorization header
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if ((res.message && res.message === "Invalid/Expired Token!" )|| res.message === 'Token Expired!') {
+         
+        } else {
+          navigate("/account");
+        }
+      });
+    } else {
+     
+    }
+  }, []);
+
+
 
   const [msg, setmsg] = useState("");
 

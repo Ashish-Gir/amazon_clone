@@ -346,7 +346,10 @@ const ProductDetails = () => {
       {/* Single Product Page End  */}
     </div>
        </> :<> 
-       <h1>loading ...</h1></> }
+         <div style={{display:'flex',justifyContent:'center',alignItems:'center',minHeight:"90vh"}}>
+    <h1 style={{textAlign:'center'}}>loading ...</h1> 
+    </div>
+    </> }
 
   </>
   );
